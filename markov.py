@@ -52,13 +52,30 @@ def make_chains(text_string):
 
 def make_text(chains):
     """Return text from chains."""
+    # pick a random key from the dictionary 
+    key = choice(list(chains.keys()))
+    #{('a', 'fox?'): ['Would']}
+    words = [key[0], key[1]]
+    # figure out if "key" is actually in the dictionary (chains)
+    # only choose a word when it is
+    word = choice(chains[key]) #{('a', 'fox?'): ['Random']}
+    
+    #create a list to store the keys
+    # while word is not KeyError
+    # while word is not None:
+    #     key = (key[1], word) #current output: {dict[key], rand_word} || {('a', 'fox?'): []}
+    #     words.append(word)
+    #     word = choice(chains[key]) # pick a random word from chains[key]
+    # return ' '.join(words)
 
-    words = []
-
-    # your code goes here
-
+    while chains.get(key):
+        try:
+            word = choice(chains[key])
+            words.append(word)
+            key = (key[1], word)
+        except:
+            raise KeyError
     return ' '.join(words)
-
 
 input_path = 'green-eggs.txt'
 
@@ -72,3 +89,18 @@ chains = make_chains(input_text)
 random_text = make_text(chains)
 
 print(random_text)
+
+# try:
+#  word = choice(chains[key])
+#  words.append(word)
+#  key = (key[1], word)
+#except:
+#  raise KeyError
+# --
+# if key in chains:
+    # word = choice(chains[key])
+    # words.append(word)
+    # key = (key[1], word)
+# else
+    # break
+#join 
